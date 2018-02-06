@@ -1,0 +1,57 @@
+{
+  "name": "ocaml-ios64",
+  "version": "4.4.0",
+  "dependencies": {
+    "@esy-ocaml/substs": "^0.0.1",
+    "@esy-ocaml/esy-installer": "^0.0.0",
+    "@opam/ocamlfind": " >= 1.5.4",
+    "@opam/conf-ios": "*"
+  },
+  "peerDependencies": {
+    "ocaml": "*"
+  },
+  "temp": {
+    "build": [
+      ["./configure", "-no-cfi", "-prefix", "$cur__install"],
+      ["./files/install.sh", "$cur__install"]
+    ]
+  },
+  "esy": {
+    "build": [
+      ["substs", "files/config/Makefile.in"],
+      ["substs", "files/ios.conf.in"],
+      ["make", "world", "opt", "install"],
+      ["sh", "./files/install.sh", "$cur__install"],
+      ["sh", "-c", "(esy-installer || true)"]
+    ],
+    "install": [],
+    "exportedEnv": {
+      "ocaml_ios64_version": {
+        "val": "4.4.0",
+        "scope": "global"
+      },
+      "ocaml_ios64_installed": {
+        "val": "true",
+        "scope": "global"
+      },
+      "ocaml_ios64_enable": {
+        "val": "enable",
+        "scope": "global"
+      },
+      "OCAMLLIB": {
+        "val": "$cur__install/lib/ocaml",
+        "scope": "global"
+      },
+      "CAML_LD_LIBRARY_PATH": {
+        "val":
+          "$cur__install/lib/ocaml/stublibs:$cur__install/lib/ocaml:$CAML_LD_LIBRARY_PATH",
+        "scope": "global"
+      },
+      "OCAML_TOPLEVEL_PATH": {
+        "val": "$cur__install/lib/ocaml",
+        "scope": "global"
+      }
+    },
+    "buildsInSource": true
+  }
+}
