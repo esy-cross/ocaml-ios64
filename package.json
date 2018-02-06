@@ -13,15 +13,15 @@
   "temp": {
     "build": [
       ["./configure", "-no-cfi", "-prefix", "$cur__install"],
-      ["./files/install.sh", "$cur__install"]
+      ["./install.sh", "$cur__install"]
     ]
   },
   "esy": {
     "build": [
-      ["substs", "files/config/Makefile.in"],
-      ["substs", "files/ios.conf.in"],
+      ["substs", "config/Makefile.in"],
+      ["substs", "ios.conf.in"],
       ["make", "world", "opt", "install"],
-      ["sh", "./files/install.sh", "$cur__install"],
+      ["sh", "./install.sh", "$cur__install"],
       ["sh", "-c", "(esy-installer || true)"]
     ],
     "install": [],
