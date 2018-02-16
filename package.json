@@ -4,8 +4,7 @@
   "dependencies": {
     "@esy-ocaml/substs": "^0.0.1",
     "@esy-ocaml/esy-installer": "^0.0.0",
-    "@opam/ocamlfind": " >= 1.5.4",
-    "@opam/conf-ios": "*"
+    "@opam/ocamlfind": " >= 1.5.4"
   },
   "peerDependencies": {
     "ocaml": "*"
