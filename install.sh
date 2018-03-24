@@ -1,12 +1,10 @@
 #!/bin/sh -e
 
-CURR_INSTALL="$1"
+OCAMLFIND_LIBPATH="$1"
+TARGET_OCAML_PATH="$2"
 
 for pkg in bigarray bytes compiler-libs dynlink findlib graphics num num-top stdlib str threads unix; do
-  cp -r "${CURR_INSTALL}/lib/${pkg}" "${CURR_INSTALL}/ios-sysroot/lib/"
+  cp -LR "${OCAMLFIND_LIBPATH}/../${pkg}" "${TARGET_OCAML_PATH}/ios-sysroot/lib/"
 done
 
-# mkdir -p "${CURR_INSTALL}/lib/findlib.conf.d"
-# cp ios.conf "${CURR_INSTALL}/lib/findlib.conf.d"
-
-(cd "${CURR_INSTALL}/ios-sysroot/bin/" && ln -sf ocamlc.byte ocamlc)
+(cd "${TARGET_OCAML_PATH}/ios-sysroot/bin/" && ln -sf ocamlc.byte ocamlc)
